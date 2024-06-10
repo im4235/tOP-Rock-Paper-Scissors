@@ -89,13 +89,18 @@ function main() {
 
 const btnRock = document.getElementById("rock");
 btnRock.addEventListener('click', function(e) {
-    // console.log("Button Click");
     playRound("Rock", getComputerChoice());
 })
 
+const btnPaper = document.getElementById("paper");
+btnPaper.addEventListener('click', function(e) {
+    playRound("Paper", getComputerChoice());
+})
 
-
-
+const btnScissors = document.getElementById("scissors");
+btnScissors.addEventListener('click', function(e) {
+    playRound("Scissors", getComputerChoice());
+})
 
 
 
