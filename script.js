@@ -38,8 +38,7 @@ function playRound(humanChoice, computerChoice) {
             return 0;
         }
     } else if (humanChoice = "Scissors") {
-        if (computerChoice === "Rock") {
-            return 0;
+        if (computerChoice === "Rock") { return 0;
         } else if (computerChoice === "Paper") {
             return 1;
         }
@@ -56,19 +55,13 @@ function playGame(rounds) {
             case 1:
                 humanScore += 1;
                 break;
-            case 0:
-                computerScore += 1;
-            default:
-                break;
+            case 0: computerScore += 1;
+            default: break;
         }
     }
-    if (computerScore > humanScore) {
-        alert(`You lose ${computerScore} - ${humanScore}`)
-    } else if (humanScore > computerScore) {
-        alert(`You win ${humanScore} - ${computerScore}`)
-    } else {
-        alert("It's a draw!")
-    }
+    if (computerScore > humanScore) {alert(`You lose ${computerScore} - ${humanScore}`)
+    } else if (humanScore > computerScore) {alert(`You win ${humanScore} - ${computerScore}`)
+    } else {alert("It's a draw!")   }
 }
 
 
@@ -77,4 +70,19 @@ function main() {
     
 }
 
-main()
+const btnRock = document.querySelector("button");
+alert(btnRock.textContent)
+
+// btnRock.addEventListener('click', function(e) {
+//     console.log("Button Click");
+// })
+
+
+
+
+
+
+
+
+
+// main()
