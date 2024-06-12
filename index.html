@@ -12,10 +12,14 @@
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
     </div>
+    <div id="results">
+        YOU <span id="humanWins" width="10px"></span> VS <span id="computerWins"></span> COM
+    </div>
 </body>
 
 <script>
-    function getComputerChoice() {
+
+function getComputerChoice() {
     let choice = 100*Math.random();
     if (choice < 33) {
         return "Rock";
@@ -24,88 +28,78 @@
     } else {
         return "Scissors";
     }
-    
-}
-
-function getHumanChoice() {
-    switch (prompt("Enter your move").toLowerCase()) {
-        case 'scissors':
-            return "Scissors";
-        case 'rock':
-            return "Rock";
-        case 'paper':
-            return "Paper";
-        default:
-            getHumanChoice();
-    }
 }
 
 function playRound(humanChoice, computerChoice) {
-    alert(`You played ${humanChoice} against the PC's ${computerChoice}`)
+    // alert(`You played ${humanChoice} against the PC's ${computerChoice}`)
     if (humanChoice === "Rock") {
         if (computerChoice === "Scissors") {
-            return 1;
+            humanWins += 1;
+            humanScore.textContent = humanWins;
         } else if (computerChoice === "Paper") {
-            return 0;
+            computerWins += 1;
+            computerScore.textContent = computerWins
         }
     } else if (humanChoice === "Paper") {
         if (computerChoice === "Rock") {
-            return 1;
+            humanWins += 1;
+            humanScore.textContent = humanWins;
         } else if (computerChoice === "Scissors") {
-            return 0;
+            computerWins += 1;
+            computerScore.textContent = computerWins
         }
     } else if (humanChoice = "Scissors") {
-        if (computerChoice === "Rock") { return 0;
+        if (computerChoice === "Rock") {
+            computerWins += 1;
+            computerScore.textContent = computerWins
         } else if (computerChoice === "Paper") {
-            return 1;
+            humanWins += 1;
+            humanScore.textContent = humanWins;
         }
     }
 }
 
-function playGame(rounds) {
-    let humanScore = 0;
-    let computerScore = 0;
-    for (i=1; i<=rounds; i++) {    
-        const computerSelection = getComputerChoice();
-        const humanSelection = getHumanChoice();
-        switch (playRound(humanSelection, computerSelection)) {
-            case 1:
-                humanScore += 1;
-                break;
-            case 0: computerScore += 1;
-            default: break;
-        }
-    }
-    if (computerScore > humanScore) {alert(`You lose ${computerScore} - ${humanScore}`)
-    } else if (humanScore > computerScore) {alert(`You win ${humanScore} - ${computerScore}`)
-    } else {alert("It's a draw!")   }
-}
-
-
-function main() {
-    playGame(5);  
-    
-}
+let humanWins = 0;
+const humanScore = document.getElementById("humanWins");
+let computerWins = 0;
+const computerScore = document.getElementById("computerWins");
 
 const btnRock = document.getElementById("rock");
-btnRock.addEventListener('click', function(e) {
-    playRound("Rock", getComputerChoice());
-})
-
 const btnPaper = document.getElementById("paper");
-btnPaper.addEventListener('click', function(e) {
-    playRound("Paper", getComputerChoice());
-})
-
 const btnScissors = document.getElementById("scissors");
+
+
+
+btnRock.addEventListener('click', function(e) { 
+    if (humanWins == 5) {
+        alert("You Won!")
+    } else if (computerWins == 5) {
+        alert("You Lost!")
+    } else if (humanWins < 5 && computerWins < 5) {
+        playRound("Rock", getComputerChoice());
+    }
+})
+btnPaper.addEventListener('click', function(e) { 
+    if (humanWins == 5) {
+        alert("You Won!")
+    } else if (computerWins == 5) {
+        alert("You Lost!")
+    } else if (humanWins < 5 && computerWins < 5) {
+        playRound("Paper", getComputerChoice());
+    }
+})
 btnScissors.addEventListener('click', function(e) {
-    playRound("Scissors", getComputerChoice());
+    if (humanWins == 5) {
+        alert("You Won!")
+    } else if (computerWins == 5) {
+        alert("You Lost!")
+    } else if (humanWins < 5 && computerWins < 5) {
+        playRound("Scissors", getComputerChoice());
+    }
 })
 
 
 
 
-
-// main()
 </script>
 </html>
